@@ -10,7 +10,8 @@ static const char INDEX_HTML[] PROGMEM = R"HTML(<!doctype html>
 <html><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#0d0f14"><title>MoonPixel</title>
-<link rel="icon" type="image/svg+xml" href="/icon.svg"><link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" type="image/svg+xml" href="/icon.svg"><link rel="icon" type="image/png" sizes="256x256" href="/icon-256.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon" sizes="256x256" href="/icon-256.png">
 <link rel="manifest" href="/manifest.json">
 <meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="MoonPixel">
@@ -78,6 +79,15 @@ select,input[type=text],input[type=password],.btn{width:100%;font-size:16px;padd
 .nrow{display:flex;justify-content:space-between;align-items:center;padding:6px 6px 6px 14px;background:var(--tile);border-radius:12px;margin-top:6px}
 .nrow button{border:0;background:none;color:#ffb4b4;font-size:14px;padding:8px 10px}
 #wst{margin:12px 0 0;line-height:1.6;font-size:14px}
+@media(min-width:760px){
+ main{max-width:940px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:20px;align-items:start}
+ header{grid-column:1/-1}
+ .cw{grid-column:1;grid-row:2/span 3;position:sticky;top:16px;padding:28px}
+ .cf,.cs,.cx{grid-column:2}
+ .wheel{width:min(100%,360px)}
+ .fx button:hover{background:#272c35}.sw b:hover{transform:scale(1.1)}
+}
+@media(min-width:1180px){main{max-width:1180px;grid-template-columns:minmax(0,5fr) minmax(0,6fr)}.fx{grid-template-columns:repeat(4,1fr)}}
 </style></head><body><main>
 
 <header>
@@ -85,22 +95,22 @@ select,input[type=text],input[type=password],.btn{width:100%;font-size:16px;padd
  <button id="pwr" aria-label="Power" onclick="send({on:S.on?0:1})"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 3v8M6.3 6.3a8 8 0 1 0 11.4 0"/></svg></button>
 </header>
 
-<div class="card">
+<div class="card cw">
  <div class="wheel" id="wheel"><div class="knob" id="knob"></div></div>
  <p class="hint" id="hint">Drag on the wheel to pick a colour</p>
  <div class="sw" id="sw"></div>
 </div>
 
-<div class="card"><div class="fx" id="fx"></div></div>
+<div class="card cf"><div class="fx" id="fx"></div></div>
 
-<div class="card">
+<div class="card cs">
  <div class="lab">Brightness <b id="briV"></b></div>
  <input type="range" id="bri" min="1" max="255">
  <div id="spdBox"><div class="lab">Speed <b id="spdV"></b></div>
  <input type="range" id="spd" min="1" max="10"></div>
 </div>
 
-<div class="card"><details><summary>Wi-Fi &amp; settings</summary><div class="set">
+<div class="card cx"><details><summary>Wi-Fi &amp; settings</summary><div class="set">
  <div id="wst"></div>
  <label>Saved networks <span style="color:var(--mut)">(the lamp joins the strongest one)</span></label>
  <div id="nets"></div>

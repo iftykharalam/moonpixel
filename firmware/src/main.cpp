@@ -757,7 +757,7 @@ class StringPrint : public Print {
 void setupRoutes() {
   server.on("/", HTTP_GET, [] {
     server.sendHeader("Content-Encoding", "gzip");          // ~2 KB on the air instead of ~7 KB
-    server.sendHeader("Cache-Control", "max-age=3600");     // the browser keeps it: next loads need no page transfer
+    server.sendHeader("Cache-Control", "max-age=600");      // the browser keeps it 10 min: fewer transfers, updates still show up
     server.send_P(200, "text/html", (PGM_P)INDEX_HTML_GZ, INDEX_HTML_GZ_LEN);
   });
   server.on("/api/state", HTTP_GET, sendState);
@@ -769,6 +769,10 @@ void setupRoutes() {
   };
   server.on("/apple-touch-icon.png", HTTP_GET, sendIcon);
   server.on("/apple-touch-icon-precomposed.png", HTTP_GET, sendIcon);
+  server.on("/icon-256.png", HTTP_GET, [] {           // Mac Dock web app icon
+    server.sendHeader("Cache-Control", "max-age=604800");
+    server.send_P(200, "image/png", (PGM_P)ICON_BIG_PNG, ICON_BIG_PNG_LEN);
+  });
   server.on("/icon.svg", HTTP_GET, [] {
     server.sendHeader("Cache-Control", "max-age=604800");
     server.send_P(200, "image/svg+xml", ICON_SVG);

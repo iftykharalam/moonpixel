@@ -11,8 +11,10 @@ Original hardware design and starter code by
 - **13 effects:** Moon, Moon glow, Colour, Breathe, Candle, Sunset, Ember, Rainbow, Pastel,
   Ocean, Aurora, Twilight and Gradient (colours circling the moon). All animations are smooth
   and tuned so that they stay visible through the diffuser.
-- **Phone web app:** colour wheel, swatches, brightness and speed sliders. Add it to your home
-  screen to get a full-screen app with its own icon. It's built for a weak Wi-Fi link: taps
+- **Phone and desktop web app:** colour wheel, swatches, brightness and speed sliders. The layout
+  is one column on phones and two columns on tablets and laptops. Add it to your iPhone home
+  screen, or to the Mac Dock with Safari's **File → Add to Dock**, to get a full-screen app with
+  its own moon icon. It's built for a weak Wi-Fi link: taps
   apply at once, requests are queued, and lost requests are retried.
 - **Wi-Fi that copes with a weak signal:**
   - It stores up to 3 networks and joins the strongest one it can hear.
@@ -76,7 +78,8 @@ setups you have to use PlatformIO's own Python instead of `python3`.
 4. The lamp joins your Wi-Fi and the hotspot switches off. Find the lamp's address in your
    router's client list, or in the serial log. To make the address permanent, reserve it on
    your router.
-5. On iPhone, open that address in Safari, then tap **Share → Add to Home Screen**.
+5. On iPhone, open that address in Safari, then tap **Share → Add to Home Screen**. On a Mac, use
+   Safari's **File → Add to Dock**.
 
 To get the setup hotspot back later, use **Forget all Wi-Fi** on the page, or send `hotspot`
 over Bluetooth.

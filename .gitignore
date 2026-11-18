@@ -1,0 +1,10 @@
+# macOS
+.DS_Store
+
+# PlatformIO build output
+.pio/
+.vscode/
+
+# Generated before every build by firmware/tools/*.py
+firmware/src/web_page_gz.h
+firmware/src/web_icons.h
